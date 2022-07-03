@@ -58,7 +58,10 @@ export default function TasksList(props: TasksListProps): JSX.Element {
                   inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={task} />
+              <ListItemText
+                id={labelId}
+                primary={checked.indexOf(task) !== -1 ? <s>{task}</s> : task}
+              />
             </ListItemButton>
           </ListItem>
         );
