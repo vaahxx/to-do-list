@@ -2,13 +2,22 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./Header/Header";
 import AddTask from "./AddTask/AddTask";
+import TasksList from "./TasksList";
 import { Card } from "@mui/material";
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
-  function handleAddTask(task: string) {
+
+  function handleAddTask(task: string): void {
     const newTasks = [...tasks];
     newTasks.push(task);
+    setTasks(newTasks);
+  }
+
+  function handleDeleteTask(task: string): void {
+    const index = tasks.indexOf(task);
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
     setTasks(newTasks);
   }
 
@@ -20,9 +29,9 @@ function App() {
           className="App-main-card"
           children={
             <div>
-              <Header date={new Date()}></Header>
-              <AddTask onAddTask={handleAddTask}></AddTask>
-              {tasks}
+              <Header date={new Date()} />
+              <AddTask onAddTask={handleAddTask} />
+              <TasksList tasks={tasks} onDeleteTask={handleDeleteTask} />
             </div>
           }
         ></Card>
