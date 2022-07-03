@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./Header/Header";
-import AddTask from "./AddTask/AddTask";
+import Header from "./Header";
+import AddTask from "./AddTask";
 import TasksList from "./TasksList";
 import { Card } from "@mui/material";
 

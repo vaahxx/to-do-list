@@ -30,7 +30,7 @@ export default function TasksList(props: TasksListProps): JSX.Element {
   };
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {props.tasks.map((task: string) => {
         const labelId = `checkbox-list-label-${task}`;
 
@@ -41,7 +41,7 @@ export default function TasksList(props: TasksListProps): JSX.Element {
               <IconButton
                 edge="end"
                 aria-label="delete"
-                onClick={(ev) => props.onDeleteTask(task)}
+                onClick={() => props.onDeleteTask(task)}
               >
                 <ClearIcon />
               </IconButton>
