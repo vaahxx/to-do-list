@@ -31,12 +31,12 @@ export default function TasksList(props: TasksListProps): JSX.Element {
 
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      {props.tasks.map((task: string) => {
-        const labelId = `checkbox-list-label-${task}`;
+      {props.tasks.map((task: string, index: number) => {
+        const labelId = `checkbox-list-label-${task}-${index}`;
 
         return (
           <ListItem
-            key={task}
+            key={labelId}
             secondaryAction={
               <IconButton
                 edge="end"
