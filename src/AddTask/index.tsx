@@ -15,9 +15,16 @@ function AddTask(props: AddTaskProps): JSX.Element {
         id="standard-basic"
         label="New Task"
         variant="standard"
+        value={task}
         onChange={(ev) => setTask(ev.target.value)}
       />
-      <Button variant="outlined" onClick={(ev) => props.onAddTask(task)}>
+      <Button
+        variant="outlined"
+        onClick={(ev) => {
+          props.onAddTask(task);
+          setTask("");
+        }}
+      >
         Add
       </Button>
     </div>
