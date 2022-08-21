@@ -9,6 +9,9 @@ function App() {
   const [tasks, setTasks] = useState<string[]>([]);
 
   function handleAddTask(task: string): void {
+    if (!task) {
+      return;
+    }
     const newTasks = [...tasks];
     newTasks.push(task);
     setTasks(newTasks);
