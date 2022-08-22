@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,7 +14,14 @@ interface TasksListProps {
 }
 
 export default function TasksList(props: TasksListProps): JSX.Element {
-  const [checked, setChecked] = React.useState<string[]>([]);
+  const [checked, setChecked] = useState<string[]>(
+    (): string[] =>
+      JSON.parse(window.localStorage.getItem("checked") as string) || []
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("checked", JSON.stringify(checked));
+  }, [checked]);
 
   const handleToggle = (id: string) => () => {
     const currentIndex = checked.indexOf(id);
@@ -25,8 +32,6 @@ export default function TasksList(props: TasksListProps): JSX.Element {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
-    console.log(newChecked);
 
     setChecked(newChecked);
   };

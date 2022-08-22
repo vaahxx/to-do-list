@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Header";
 import AddTask from "./AddTask";
@@ -6,7 +6,14 @@ import TasksList from "./TasksList";
 import { Card } from "@mui/material";
 
 function App() {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<string[]>(
+    (): string[] =>
+      JSON.parse(window.localStorage.getItem("tasks") as string) || []
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleAddTask(task: string): void {
     if (!task) {
