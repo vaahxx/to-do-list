@@ -26,8 +26,8 @@
 
 .App-main-card {
   padding: 5vw;
-  max-height: 80%;
-  max-width: 100vh;
+  width: 65vw;
+  height: 65vh;
 }
 
 p {
