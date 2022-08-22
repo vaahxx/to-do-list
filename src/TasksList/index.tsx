@@ -16,15 +16,17 @@ interface TasksListProps {
 export default function TasksList(props: TasksListProps): JSX.Element {
   const [checked, setChecked] = React.useState<string[]>([]);
 
-  const handleToggle = (value: string) => () => {
-    const currentIndex = checked.indexOf(value);
+  const handleToggle = (id: string) => () => {
+    const currentIndex = checked.indexOf(id);
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newChecked.push(id);
     } else {
       newChecked.splice(currentIndex, 1);
     }
+
+    console.log(newChecked);
 
     setChecked(newChecked);
   };
@@ -48,11 +50,15 @@ export default function TasksList(props: TasksListProps): JSX.Element {
             }
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={handleToggle(task)} dense>
+            <ListItemButton
+              role={undefined}
+              onClick={handleToggle(labelId)}
+              dense
+            >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(task) !== -1}
+                  checked={checked.indexOf(labelId) !== -1}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ "aria-labelledby": labelId }}
@@ -60,7 +66,7 @@ export default function TasksList(props: TasksListProps): JSX.Element {
               </ListItemIcon>
               <ListItemText
                 id={labelId}
-                primary={checked.indexOf(task) !== -1 ? <s>{task}</s> : task}
+                primary={checked.indexOf(labelId) !== -1 ? <s>{task}</s> : task}
               />
             </ListItemButton>
           </ListItem>
