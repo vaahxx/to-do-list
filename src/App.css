@@ -37,3 +37,7 @@ p {
 header {
   margin-bottom: 10vh;
 }
+
+.MuiPaper-root {
+  overflow-y: scroll !important;
+}
